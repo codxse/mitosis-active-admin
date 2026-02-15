@@ -1,6 +1,6 @@
-<div class="mitosis-editor-wrapper"
-     data-height="<%= input_html_options[:data][:mit_height] %>"
-     data-placeholder="<%= input_html_options[:data][:mit_placeholder] %>">
+<%= render "inputs/mitosis_editor_input/dependencies" %>
+
+<div class="mitosis-editor-wrapper" data-editor-options="<%= editor_options_json %>">
   <div id="mitosis-editor-<%= input_html_options[:id] %>" class="mitosis-editor-container"></div>
 </div>
 
@@ -8,18 +8,18 @@
 (function() {
   var container = document.getElementById('mitosis-editor-<%= input_html_options[:id] %>');
   var wrapper = container.closest('.mitosis-editor-wrapper');
-  var height = wrapper.dataset.height || '500px';
-  var placeholder = wrapper.dataset.placeholder || '';
-
+  var options = JSON.parse(wrapper.dataset.editorOptions || '{}');
   var hiddenInput = document.getElementById('<%= input_html_options[:id] %>');
 
-  if (window.MitosisEditor) {
-    var editor = window.MitosisEditor.createEditor({
-      container: container,
-      content: hiddenInput ? hiddenInput.value : '',
-      height: height,
-      placeholder: placeholder
-    });
+  options.container = container;
+  options.content = hiddenInput ? hiddenInput.value : '';
+
+  if (window.Prism) {
+    options.prism = window.Prism;
+  }
+
+  if (window.MitosisEditor && window.MitosisEditor.createEditor) {
+    var editor = window.MitosisEditor.createEditor(options);
 
     var form = container.closest('form');
     if (form) {

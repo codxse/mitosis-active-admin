@@ -4,7 +4,8 @@ ActiveAdmin.register Article do
   form do |f|
     f.inputs do
       f.input :title
-      f.input :body, as: :mitosis_editor, input_html: { class: "mitosis-editor-input" }
+      f.input :body, as: :mitosis_editor,
+        editor_options: { height: "400px", placeholder: "Write your article in markdown..." }
     end
     f.actions
   end
