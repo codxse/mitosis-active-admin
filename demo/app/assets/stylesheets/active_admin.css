@@ -1,0 +1,3 @@
+@import "tailwindcss";
+@plugin "@activeadmin/activeadmin/plugin";
+@config "../../../tailwind-active_admin.config.js";

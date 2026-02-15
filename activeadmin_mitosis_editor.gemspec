@@ -1,3 +1,5 @@
+require_relative "lib/activeadmin_mitosis_editor/version"
+
 Gem::Specification.new do |spec|
   spec.name          = "activeadmin_mitosis_editor"
   spec.version       = ActiveAdminMitosisEditor::VERSION
@@ -9,6 +11,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "railties", ">= 6.0"
-  spec.add_runtime_dependency "formtastic", "~> 4.0"
+  spec.add_runtime_dependency "formtastic", ">= 4.0"
   spec.add_runtime_dependency "activesupport", ">= 6.0"
 end
