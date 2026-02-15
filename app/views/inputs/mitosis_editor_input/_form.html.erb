@@ -28,7 +28,7 @@
     var form = container.closest('form');
     if (form) {
       form.addEventListener('submit', function() {
-        if (editor && editor.getMarkdown) {
+        if (hiddenInput && editor && editor.getMarkdown) {
           hiddenInput.value = editor.getMarkdown();
         }
       });
