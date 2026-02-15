@@ -1,5 +1,4 @@
 <div class="mitosis-editor-wrapper"
-     data-input-name="<%= input_html_options[:name] %>"
      data-height="<%= input_html_options[:data][:mit_height] %>"
      data-placeholder="<%= input_html_options[:data][:mit_placeholder] %>">
   <div id="mitosis-editor-<%= input_html_options[:id] %>" class="mitosis-editor-container"></div>
@@ -9,12 +8,10 @@
 (function() {
   var container = document.getElementById('mitosis-editor-<%= input_html_options[:id] %>');
   var wrapper = container.closest('.mitosis-editor-wrapper');
-  var inputName = wrapper.dataset.inputName;
   var height = wrapper.dataset.height || '500px';
   var placeholder = wrapper.dataset.placeholder || '';
 
-  // Find the hidden input
-  var hiddenInput = document.querySelector('input[name="' + inputName + '"]');
+  var hiddenInput = document.getElementById('<%= input_html_options[:id] %>');
 
   if (window.MitosisEditor) {
     var editor = window.MitosisEditor.createEditor({
@@ -24,7 +21,6 @@
       placeholder: placeholder
     });
 
-    // Sync editor content to hidden input on form submit
     var form = container.closest('form');
     if (form) {
       form.addEventListener('submit', function() {
