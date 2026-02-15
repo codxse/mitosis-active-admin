@@ -1,4 +1,5 @@
 require "activeadmin_mitosis_editor/version"
+require "activeadmin_mitosis_editor/railtie" if defined?(Rails)
 
 module ActiveAdminMitosisEditor
   module Inputs
