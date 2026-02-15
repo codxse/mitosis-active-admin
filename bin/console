@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require "bundler/setup"
+require "activeadmin_mitosis_editor"
+
+IRAP.start(ARGV)
