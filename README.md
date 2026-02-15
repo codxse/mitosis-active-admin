@@ -17,11 +17,22 @@ Then run `bundle install`.
 In your ActiveAdmin resource:
 
 ```ruby
+# Basic usage
 ActiveAdmin.register Article do
   form do |f|
     f.inputs do
       f.input :title
       f.input :body, as: :mitosis_editor
+    end
+    f.actions
+  end
+end
+
+# With custom options
+ActiveAdmin.register Article do
+  form do |f|
+    f.inputs do
+      f.input :title
       f.input :body, as: :mitosis_editor, height: "400px", placeholder: "Write markdown..."
     end
     f.actions
