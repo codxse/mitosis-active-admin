@@ -10,7 +10,7 @@ module ActiveAdminMitosisEditor
             builder: builder,
             method: method,
             input_html_options: input_html_options,
-            editor_options_json: editor_options.to_json
+            editor_options: editor_options
           })
         end
       end
@@ -22,7 +22,7 @@ module ActiveAdminMitosisEditor
       private
 
       def editor_options
-        { height: "500px", placeholder: "" }.merge(options[:editor_options] || {})
+        { height: "500px", placeholder: "", theme: "auto" }.merge(options[:editor_options] || {})
       end
     end
   end

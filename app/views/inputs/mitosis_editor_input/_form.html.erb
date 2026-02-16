@@ -1,10 +1,9 @@
 <%
-  editor_opts = JSON.parse(editor_options_json)
-  theme = editor_opts.fetch('theme', 'light')
+  theme = editor_options.fetch(:theme, 'auto')
 %>
 <%= render "inputs/mitosis_editor_input/dependencies", theme: theme %>
 
-<div class="mitosis-editor-wrapper" data-editor-options="<%= editor_options_json %>">
+<div class="mitosis-editor-wrapper" data-editor-options="<%= editor_options.to_json %>">
   <div id="mitosis-editor-<%= input_html_options[:id] %>" class="mitosis-editor-container"></div>
 </div>
 
@@ -24,6 +23,21 @@
 
   if (window.MitosisEditor && window.MitosisEditor.createEditor) {
     var editor = window.MitosisEditor.createEditor(options);
+
+    if (options.theme === 'auto') {
+      var htmlEl = document.documentElement;
+      var mutationObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.attributeName === 'class') {
+            var isDark = htmlEl.classList.contains('dark');
+            editor.setTheme(isDark ? 'dark' : 'light');
+          }
+        });
+      });
+      mutationObserver.observe(htmlEl, { attributes: true });
+    } else {
+      editor.setTheme(options.theme);
+    }
 
     var form = container.closest('form');
     if (form) {

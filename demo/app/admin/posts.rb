@@ -1,11 +1,11 @@
-ActiveAdmin.register Article do
+ActiveAdmin.register Post do
   permit_params :title, :body
 
   form do |f|
     f.inputs do
       f.input :title
       f.input :body, as: :mitosis_editor,
-        editor_options: { theme: "dark", height: "400px", placeholder: "Write your article in markdown..." }
+        editor_options: { theme: "light", height: "400px" }
     end
     f.actions
   end
