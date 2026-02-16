@@ -34,15 +34,55 @@ Pass serializable options to `createEditor()` via `editor_options`:
 
 ```ruby
 f.input :body, as: :mitosis_editor,
-  editor_options: { height: "400px", placeholder: "Write markdown..." }
+  editor_options: { height: "400px", placeholder: "Write markdown...", theme: "dark" }
 ```
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | height | string | '500px' | Editor height |
 | placeholder | string | '' | Placeholder text |
+| theme | string | 'light' | Theme: 'light', 'dark', or 'auto' |
+| readonly | boolean | false | Make editor read-only |
+| cssVars | hash | {} | Custom CSS variables |
 
 Any key in `editor_options` is passed through to the JS `createEditor()` call.
+
+#### Theme Examples
+
+```ruby
+# Light theme (default)
+f.input :body, as: :mitosis_editor,
+  editor_options: { theme: "light" }
+
+# Dark theme
+f.input :body, as: :mitosis_editor,
+  editor_options: { theme: "dark" }
+
+# Auto-detect based on system preference
+f.input :body, as: :mitosis_editor,
+  editor_options: { theme: "auto" }
+```
+
+### Customizing CSS
+
+To customize CSS variables, copy the CSS files to your app:
+
+```bash
+rails generate mitosis_editor:styles
+```
+
+This creates:
+- `app/assets/stylesheets/mitosis_editor/mitosis-editor.css`
+- `app/assets/stylesheets/mitosis_editor/theme-light.css`
+- `app/assets/stylesheets/mitosis_editor/theme-dark.css`
+
+Edit the CSS variables in these files, then update your dependencies to use your custom CSS:
+
+```erb
+<%= stylesheet_link_tag "mitosis_editor/mitosis-editor" %>
+<%= stylesheet_link_tag "mitosis_editor/theme-light" %>
+<%= javascript_include_tag "mitosis-editor" %>
+```
 
 ### Customizing Dependencies
 

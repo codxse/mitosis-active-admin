@@ -1,2 +1,9 @@
+<%
+  theme = local_assigns[:theme] || 'light'
+  theme_light = %w[light auto].include?(theme)
+  theme_dark = %w[dark auto].include?(theme)
+%>
 <%= stylesheet_link_tag "mitosis-editor" %>
+<%= stylesheet_link_tag "theme-light" if theme_light %>
+<%= stylesheet_link_tag "theme-dark" if theme_dark %>
 <%= javascript_include_tag "mitosis-editor" %>

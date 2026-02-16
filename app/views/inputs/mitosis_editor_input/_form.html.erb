@@ -1,4 +1,8 @@
-<%= render "inputs/mitosis_editor_input/dependencies" %>
+<%
+  editor_opts = JSON.parse(editor_options_json)
+  theme = editor_opts.fetch('theme', 'light')
+%>
+<%= render "inputs/mitosis_editor_input/dependencies", theme: theme %>
 
 <div class="mitosis-editor-wrapper" data-editor-options="<%= editor_options_json %>">
   <div id="mitosis-editor-<%= input_html_options[:id] %>" class="mitosis-editor-container"></div>
