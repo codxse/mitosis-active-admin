@@ -2,6 +2,8 @@
 
 A Ruby gem that provides a split-view markdown editor input for ActiveAdmin, powered by mitosis-js.
 
+![Preview](preview.png)
+
 ## Installation
 
 Add this line to your Rails application's Gemfile:
@@ -98,9 +100,9 @@ This creates `app/views/inputs/mitosis_editor_input/_dependencies.html.erb` with
 <%= stylesheet_link_tag "mitosis-editor" %>
 <%= javascript_include_tag "mitosis-editor" %>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+<%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" %>
+<%= javascript_include_tag "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js" %>
+<%= javascript_include_tag "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js" %>
 ```
 
 The editor JS auto-detects `window.Prism` and passes it to `createEditor()` when present.
