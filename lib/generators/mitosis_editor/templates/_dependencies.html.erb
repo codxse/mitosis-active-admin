@@ -1,21 +1,17 @@
-<%%#
-  # Parameters:
-  #   theme - 'light', 'dark', or 'auto' (default: 'light')
-  #%%>
-<%%
-  theme = local_assigns[:theme] || 'light'
-  theme_light = %w[light auto].include?(theme)
-  theme_dark = %w[dark auto].include?(theme)
-%%>
-<%%= stylesheet_link_tag "mitosis-editor" %>
-<%%= stylesheet_link_tag "theme-light" if theme_light %>
-<%%= stylesheet_link_tag "theme-dark" if theme_dark %>
-<%%= javascript_include_tag "mitosis-editor" %>
+<%# Parameters:
+#   theme - 'light', 'dark', or 'auto' (default: 'light') %>
+<% theme = local_assigns[:theme] || "auto"
+theme_light = %w[light auto].include?(theme)
+theme_dark = %w[dark auto].include?(theme) %>
+<%= stylesheet_link_tag "mitosis-editor" %>
+<%= stylesheet_link_tag "theme-light" if theme_light %>
+<%= stylesheet_link_tag "theme-dark" if theme_dark %>
+<%= javascript_include_tag "mitosis-editor" %>
 
 <%# Uncomment the lines below to enable syntax highlighting with Prism %>
-<%# <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css"> %>
-<%# <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script> %>
-<%# <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script> %>
-<%# <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script> %>
-<%# <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script> %>
-<%# <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script> %>
+<%#= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" %>
+<%#= javascript_include_tag "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js" %>
+<%#= javascript_include_tag "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js" %>
+<%#= javascript_include_tag "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js" %>
+<%#= javascript_include_tag "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js" %>
+<%#= javascript_include_tag "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js" %>

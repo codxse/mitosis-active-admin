@@ -8,7 +8,7 @@ This is a Ruby gem called `activeadmin_mitosis_editor` that provides a split-vie
 
 1. **Main Gem** (`/lib`): The Ruby gem with Formtastic input class and Railtie for asset pipeline integration.
 2. **Demo App** (`/demo`): A Rails 8.1 application demonstrating the gem's usage and system tests.
-3. **Assets** (`/vendor/assets`): Pre-compiled mitosis-js and Prism syntax highlighter bundles. It downloaded from https://www.npmjs.com/package/@codxse/mitosis-js v1.6.0
+3. **Assets** (`/vendor/assets`): Pre-compiled mitosis-js and Prism syntax highlighter bundles. It downloaded from https://www.npmjs.com/package/@codxse/mitosis-js v1.6.1
 
 - The gem bundles pre-compiled CSS/JS assets in `/vendor/assets`
 - No database migrations required - stores markdown as plain strings
@@ -102,27 +102,6 @@ bundle exec rspec spec/system/editor_spec.rb:42
 ```
 
 Note: RSpec is only available in the demo app, not in the gem root. The gem itself has no development dependencies; tests are integration tests in the demo Rails application.
-
-### Updating Mitosis-JS Library
-
-When updating the mitosis-js library in `/vendor/assets`:
-
-1. Update the bundled files in `/vendor/assets/javascripts/` and `/vendor/assets/stylesheets/`
-2. Sync the CSS files to `/demo/app/assets/stylesheets/mitosis_editor/` (this is where Rails reads them from):
-   ```bash
-   cp ../vendor/assets/stylesheets/mitosis-editor.css demo/app/assets/stylesheets/mitosis_editor/mitosis-editor.css
-   cp ../vendor/assets/stylesheets/theme-dark.min.css demo/app/assets/stylesheets/mitosis_editor/theme-dark.css
-   cp ../vendor/assets/stylesheets/theme-light.min.css demo/app/assets/stylesheets/mitosis_editor/theme-light.css
-   ```
-3. Clear caches in the demo app:
-   ```bash
-   cd demo
-   rm -rf tmp/cache public/assets
-   ```
-4. Restart the Rails server
-5. Clear browser cache or use incognito window to see the new assets
-
-Note: The CSS files must be kept in `/demo/app/assets/stylesheets/mitosis_editor/` subdirectory, not the root stylesheets directory, as the asset pipeline will prefer files in the app's stylesheets folder over vendor/assets.
 
 ## Dependencies
 
