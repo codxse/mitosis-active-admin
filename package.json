@@ -1,0 +1,13 @@
+{
+  "name": "activeadmin-mitosis-editor",
+  "version": "0.1.6",
+  "private": true,
+  "devDependencies": {
+    "standard-version": "^9.5.0"
+  },
+  "standard-version": {
+    "scripts": {
+      "postbump": "ruby script/sync-version"
+    }
+  }
+}
