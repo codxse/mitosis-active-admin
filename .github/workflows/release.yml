@@ -1,46 +1,15 @@
 name: Release
 
 on:
-  push:
-    branches: [main]
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [master]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: demo
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-          bundler-cache: true
-
-      - name: Install Ruby dependencies
-        run: bundle install
-
-      - name: Setup test database
-        run: |
-          bin/rails db:create db:migrate
-        env:
-          RAILS_ENV: test
-
-      - name: Precompile assets
-        run: bin/rails assets:precompile
-        env:
-          RAILS_ENV: test
-
-      - name: Run tests
-        run: bundle exec rspec
-
   release:
-    needs: test
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     permissions:
       contents: write
       id-token: write
@@ -91,4 +60,4 @@ jobs:
       - name: Push changes and tag
         run: |
           git tag v${{ steps.version.outputs.version }}
-          git push --follow-tags origin main
+          git push --follow-tags origin master
