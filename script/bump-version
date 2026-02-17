@@ -36,12 +36,12 @@ module BumpVersion
     def detect_bump_type
       commits = `git log --oneline -10`.split("\n")
       has_major = commits.any? { |c| c.include?("feat!:") || c.include?("BREAKING") }
-      has_minor = commits.any? { |c| c.include?("feat:") && !c.include?("fix:") }
       has_fix = commits.any? { |c| c.include?("fix:") }
+      has_minor = commits.any? { |c| c.include?("feat:") }
 
       return "major" if has_major
+      return "patch" if has_fix  # fix has higher priority than feat
       return "minor" if has_minor
-      return "patch" if has_fix
 
       "patch"
     end
