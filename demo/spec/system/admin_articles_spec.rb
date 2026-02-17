@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Admin Articles", type: :system do
   before do
-    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+    driven_by :selenium, using: :headless_chrome, screen_size: [ 1400, 1400 ]
   end
 
   it "saves markdown body when creating an article" do

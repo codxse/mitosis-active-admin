@@ -23,7 +23,9 @@ jobs:
           bundler-cache: true
 
       - name: Install dependencies
-        run: bundle install
+        run: |
+          bundle config set --local path 'vendor/bundle'
+          bundle install
 
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
@@ -48,7 +50,9 @@ jobs:
           bundler-cache: true
 
       - name: Install dependencies
-        run: bundle install
+        run: |
+          bundle config set --local path 'vendor/bundle'
+          bundle install
 
       - name: Scan for security vulnerabilities in JavaScript dependencies
         run: bin/importmap audit
@@ -71,7 +75,9 @@ jobs:
           bundler-cache: true
 
       - name: Install dependencies
-        run: bundle install
+        run: |
+          bundle config set --local path 'vendor/bundle'
+          bundle install
 
       - name: Prepare RuboCop cache
         uses: actions/cache@v4
@@ -102,6 +108,11 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
 
+      - name: Install dependencies
+        run: |
+          bundle config set --local path 'vendor/bundle'
+          bundle install
+
       - name: Run tests
         env:
           RAILS_ENV: test
@@ -122,6 +133,11 @@ jobs:
         with:
           ruby-version: '3.3'
           bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          bundle config set --local path 'vendor/bundle'
+          bundle install
 
       - name: Install Chrome
         uses: browser-actions/setup-chrome@v1

@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Mitosis Editor Prism Syntax Highlighting", type: :system do
   before do
-    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+    driven_by :selenium, using: :headless_chrome, screen_size: [ 1400, 1400 ]
   end
 
   it "loads Prism CSS and JS when enabled" do
