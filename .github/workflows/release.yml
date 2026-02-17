@@ -54,6 +54,7 @@ jobs:
       - name: Build gem
         run: gem build *.gemspec
 
+      - name: Release
         uses: rubygems/release-gem@v1
 
       - name: Push changes and tag
