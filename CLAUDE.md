@@ -8,7 +8,7 @@ This is a Ruby gem called `activeadmin_mitosis_editor` that provides a split-vie
 
 1. **Main Gem** (`/lib`): The Ruby gem with Formtastic input class and Railtie for asset pipeline integration.
 2. **Demo App** (`/demo`): A Rails 8.1 application demonstrating the gem's usage and system tests.
-3. **Assets** (`/vendor/assets`): Pre-compiled mitosis-js and Prism syntax highlighter bundles. It downloaded from https://www.npmjs.com/package/@codxse/mitosis-js v1.5.1
+3. **Assets** (`/vendor/assets`): Pre-compiled mitosis-js and Prism syntax highlighter bundles. It downloaded from https://www.npmjs.com/package/@codxse/mitosis-js v1.6.0
 
 - The gem integrates via Rails Railtie for automatic asset registration
 - No database migrations required - stores markdown as plain strings

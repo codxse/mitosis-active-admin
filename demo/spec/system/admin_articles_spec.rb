@@ -10,7 +10,7 @@ RSpec.describe "Admin Articles", type: :system do
 
     fill_in "Title", with: "Test Article"
 
-    editor_textarea = find(".editor-textarea", visible: :all)
+    editor_textarea = find(".mitosis-textarea", visible: :all)
     editor_textarea.set("# Hello World")
 
     click_button "Create Article"
