@@ -102,6 +102,26 @@ bundle exec rspec spec/system/editor_spec.rb:42
 
 Note: RSpec is only available in the demo app, not in the gem root. The gem itself has no development dependencies; tests are integration tests in the demo Rails application.
 
+### Updating Mitosis-JS Library
+
+When updating the mitosis-js library in `/vendor/assets`:
+
+1. Update the bundled files in `/vendor/assets/javascripts/` and `/vendor/assets/stylesheets/`
+2. Sync the CSS files to `/demo/app/assets/stylesheets/`:
+   ```bash
+   cp ../vendor/assets/stylesheets/mitosis-editor.css demo/app/assets/stylesheets/mitosis-editor.css
+   cp ../vendor/assets/stylesheets/mitosis-editor.css demo/app/assets/stylesheets/mitosis_editor/mitosis-editor.css
+   cp ../vendor/assets/stylesheets/theme-dark.min.css demo/app/assets/stylesheets/mitosis_editor/theme-dark.css
+   cp ../vendor/assets/stylesheets/theme-light.min.css demo/app/assets/stylesheets/mitosis_editor/theme-light.css
+   ```
+3. Clear caches in the demo app:
+   ```bash
+   cd demo
+   rm -rf tmp/cache public/assets
+   ```
+4. Restart the Rails server
+5. Clear browser cache or use incognito window to see the new assets
+
 ## Dependencies
 
 ### Runtime
