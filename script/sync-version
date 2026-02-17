@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Syncs version from package.json to Ruby gem version.rb
+# Called by standard-version postbump
+
+package_json = File.read("package.json")
+version_match = package_json.match(/"version":\s*"([^"]+)"/)
+new_version = version_match[1] if version_match
+
+if new_version
+  file = "lib/activeadmin_mitosis_editor/version.rb"
+  content = File.read(file)
+  new_content = content.gsub(/VERSION = "[^"]+"/, "VERSION = \"#{new_version}\"")
+  File.write(file, new_content)
+
+  puts "Synced version to #{new_version}"
+else
+  puts "Could not find version in package.json"
+  exit 1
+end
