@@ -40,8 +40,8 @@ module BumpVersion
       has_minor = commits.any? { |c| c.include?("feat:") }
 
       return "major" if has_major
-      return "patch" if has_fix  # fix has higher priority than feat
       return "minor" if has_minor
+      return "patch" if has_fix
 
       "patch"
     end
