@@ -53,10 +53,7 @@ jobs:
         run: gem build *.gemspec
 
       - name: Publish to RubyGems
-        uses: rubygems/trusted_publishing@latest
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          version: ${{ steps.version.outputs.version }}
+        uses: rubygems/release-gem@v1
 
       - name: Push changes and tag
         run: |
