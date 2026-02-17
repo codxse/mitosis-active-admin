@@ -10,10 +10,8 @@ jobs:
   release:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    environment: rubygems
     permissions:
       contents: write
-      id-token: write
 
     steps:
       - name: Checkout
@@ -54,8 +52,10 @@ jobs:
       - name: Build gem
         run: gem build *.gemspec
 
-      - name: Release
-        uses: rubygems/release-gem@v1
+      - name: Publish to RubyGems
+        run: gem push pkg/activeadmin_mitosis_editor-${{ steps.version.outputs.version }}.gem
+        env:
+          GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
 
       - name: Push changes and tag
         run: |
