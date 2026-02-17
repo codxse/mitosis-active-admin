@@ -5,11 +5,17 @@ on:
     workflows: [CI]
     types: [completed]
     branches: [master]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version type (patch, minor, major) or specific version'
+        required: false
+        type: string
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     permissions:
       contents: write
 
@@ -26,8 +32,20 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: Install dependencies
-        run: bundle install
+        run: |
+          bundle install
+          pnpm install
 
       - name: Configure git
         run: |
@@ -37,13 +55,10 @@ jobs:
       - name: Bump version
         run: |
           if [[ "${{ github.event.inputs.version }}" != "" ]]; then
-            VERSION_TYPE=${{ github.event.inputs.version }}
+            npx standard-version --release-as ${{ github.event.inputs.version }}
           else
-            VERSION_TYPE=patch
+            npx standard-version
           fi
-          ruby script/bump-version $VERSION_TYPE
-          git add -A
-          git commit -m "chore: bump version"
 
       - name: Get version
         id: version
@@ -53,11 +68,9 @@ jobs:
         run: gem build *.gemspec
 
       - name: Publish to RubyGems
-        run: gem push pkg/activeadmin_mitosis_editor-${{ steps.version.outputs.version }}.gem
+        run: gem push activeadmin_mitosis_editor-${{ steps.version.outputs.version }}.gem
         env:
           GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
 
       - name: Push changes and tag
-        run: |
-          git tag v${{ steps.version.outputs.version }}
-          git push --follow-tags origin master
+        run: git push --follow-tags origin master
