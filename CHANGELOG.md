@@ -1,11 +1,13 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+### [0.1.5](https://github.com/codxse/mitosis-active-admin/compare/v0.1.4...v0.1.5) (2026-02-17)
 
-## [Unreleased]
+
+### Bug Fixes
+
+* fix initializer ([357760d](https://github.com/codxse/mitosis-active-admin/commit/357760dbcb16dcc12a5cde5c56b6c491a89db834))
 
 ## [0.1.5] - 2026-02-17
 
