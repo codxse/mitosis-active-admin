@@ -1,8 +1,7 @@
 module ActiveAdminMitosisEditor
   class Engine < Rails::Engine
-    initializer "activeadmin_mitosis_editor.assets" do
-      Rails.application.config.assets.paths << ActiveAdminMitosisEditor.root.join("vendor/assets/javascripts").to_s
-      Rails.application.config.assets.paths << ActiveAdminMitosisEditor.root.join("vendor/assets/stylesheets").to_s
-    end
+    # Asset paths are not registered via Railtie to avoid conflicts with app-level
+    # asset overrides. Applications using this gem should copy the bundled assets
+    # from vendor/assets to their app/assets/stylesheets/mitosis_editor/ directory.
   end
 end

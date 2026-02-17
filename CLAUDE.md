@@ -10,9 +10,9 @@ This is a Ruby gem called `activeadmin_mitosis_editor` that provides a split-vie
 2. **Demo App** (`/demo`): A Rails 8.1 application demonstrating the gem's usage and system tests.
 3. **Assets** (`/vendor/assets`): Pre-compiled mitosis-js and Prism syntax highlighter bundles. It downloaded from https://www.npmjs.com/package/@codxse/mitosis-js v1.6.0
 
-- The gem integrates via Rails Railtie for automatic asset registration
+- The gem bundles pre-compiled CSS/JS assets in `/vendor/assets`
 - No database migrations required - stores markdown as plain strings
-- All CSS/JS assets are pre-compiled and bundled for distribution
+- Demo apps must copy assets to their own `/app/assets/` directory to ensure proper asset pipeline precedence
 - Demo app uses modern Rails 8.1 with import maps and Tailwind CSS
 - The editor is fully functional in both light and dark themes with automatic detection
 
@@ -20,10 +20,11 @@ This is a Ruby gem called `activeadmin_mitosis_editor` that provides a split-vie
 
 ### Gem Structure
 - **`lib/activeadmin_mitosis_editor.rb`**: Main entry point defining the module and asset root
-- **`lib/activeadmin_mitosis_editor/railtie.rb`**: Rails integration that registers gem assets with the asset pipeline
+- **`lib/activeadmin_mitosis_editor/railtie.rb`**: Rails integration for the gem
 - **`lib/activeadmin_mitosis_editor/inputs/mitosis_editor_input.rb`**: Formtastic input class that extends `StringInput`
 - **`app/views/inputs/mitosis_editor_input/_form.html.erb`**: Form partial rendering the editor container and initialization JavaScript
 - **`app/views/inputs/mitosis_editor_input/_dependencies.html.erb`**: Partial for conditional stylesheet loading based on theme
+- **`vendor/assets/`**: Pre-compiled mitosis-js and Prism.js bundles (must be copied to app for use)
 - **`lib/generators/`**: Rails generators for users to customize CSS and dependencies
 
 ## File Organization
