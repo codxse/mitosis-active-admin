@@ -107,9 +107,8 @@ Note: RSpec is only available in the demo app, not in the gem root. The gem itse
 When updating the mitosis-js library in `/vendor/assets`:
 
 1. Update the bundled files in `/vendor/assets/javascripts/` and `/vendor/assets/stylesheets/`
-2. Sync the CSS files to `/demo/app/assets/stylesheets/`:
+2. Sync the CSS files to `/demo/app/assets/stylesheets/mitosis_editor/` (this is where Rails reads them from):
    ```bash
-   cp ../vendor/assets/stylesheets/mitosis-editor.css demo/app/assets/stylesheets/mitosis-editor.css
    cp ../vendor/assets/stylesheets/mitosis-editor.css demo/app/assets/stylesheets/mitosis_editor/mitosis-editor.css
    cp ../vendor/assets/stylesheets/theme-dark.min.css demo/app/assets/stylesheets/mitosis_editor/theme-dark.css
    cp ../vendor/assets/stylesheets/theme-light.min.css demo/app/assets/stylesheets/mitosis_editor/theme-light.css
@@ -121,6 +120,8 @@ When updating the mitosis-js library in `/vendor/assets`:
    ```
 4. Restart the Rails server
 5. Clear browser cache or use incognito window to see the new assets
+
+Note: The CSS files must be kept in `/demo/app/assets/stylesheets/mitosis_editor/` subdirectory, not the root stylesheets directory, as the asset pipeline will prefer files in the app's stylesheets folder over vendor/assets.
 
 ## Dependencies
 
