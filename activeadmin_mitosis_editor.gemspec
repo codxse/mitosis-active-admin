@@ -3,7 +3,8 @@ require_relative "lib/activeadmin_mitosis_editor/version"
 Gem::Specification.new do |spec|
   spec.name          = "activeadmin_mitosis_editor"
   spec.version       = ActiveAdminMitosisEditor::VERSION
-  spec.authors       = ["Your Name"]
+  spec.authors       = ["Nadiar"]
+  spec.email         = ["codex@nadiar.id"]
   spec.summary       = "A split-view markdown editor input for ActiveAdmin"
   spec.description   = "Wraps mitosis-js as a custom input for ActiveAdmin forms"
   spec.license       = "MIT"
