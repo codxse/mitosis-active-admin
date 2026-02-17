@@ -53,7 +53,9 @@ jobs:
         run: gem build *.gemspec
 
       - name: Publish to RubyGems
-        run: gem push *.gem
+        run: |
+          echo "RUBYGEMS_API_KEY is set: ${{ secrets.RUBYGEMS_API_KEY != '' }}"
+          gem push *.gem
         env:
           RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
 
