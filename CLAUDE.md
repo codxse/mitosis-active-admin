@@ -8,7 +8,7 @@ This is a Ruby gem called `activeadmin_mitosis_editor` that provides a split-vie
 
 1. **Main Gem** (`/lib`): The Ruby gem with Formtastic input class and Railtie for asset pipeline integration.
 2. **Demo App** (`/demo`): A Rails 8.1 application demonstrating the gem's usage and system tests.
-3. **Assets** (`/vendor/assets`): Pre-compiled mitosis-js and Prism syntax highlighter bundles. It downloaded from https://www.npmjs.com/package/@codxse/mitosis-js v1.6.1
+3. **Assets** (`/vendor/assets`): Pre-compiled mitosis-js and Prism syntax highlighter bundles. Downloaded from https://www.npmjs.com/package/@codxse/mitosis-js v1.6.1
 
 - The gem bundles pre-compiled CSS/JS assets in `/vendor/assets`
 - No database migrations required - stores markdown as plain strings
@@ -95,10 +95,10 @@ cd demo
 bundle exec rspec
 
 # Run specific spec file
-bundle exec rspec spec/system/editor_spec.rb
+bundle exec rspec spec/system/mitosis_editor_prism_spec.rb
 
 # Run a single test
-bundle exec rspec spec/system/editor_spec.rb:42
+bundle exec rspec spec/system/mitosis_editor_prism_spec.rb:8
 ```
 
 Note: RSpec is only available in the demo app, not in the gem root. The gem itself has no development dependencies; tests are integration tests in the demo Rails application.
