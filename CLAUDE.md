@@ -106,8 +106,10 @@ Note: RSpec is only available in the demo app, not in the gem root. The gem itse
 ## Dependencies
 
 ### Runtime
-- Rails >= 6.0
-- Formtastic >= 4.0
+- Ruby >= 3.0
+- Rails >= 7.0
+- ActiveAdmin >= 4.0
+- Formtastic >= 5.0
 - Mitosis-js (bundled in vendor/assets)
 
 ### Development (Demo App)

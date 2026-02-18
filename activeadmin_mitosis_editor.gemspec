@@ -13,7 +13,9 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(spec|\.git)}) }
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "railties", ">= 6.0"
-  spec.add_runtime_dependency "formtastic", ">= 4.0"
-  spec.add_runtime_dependency "activesupport", ">= 6.0"
+  spec.required_ruby_version = ">= 3.0"
+
+  spec.add_runtime_dependency "railties", ">= 7.0"
+  spec.add_runtime_dependency "formtastic", "~> 5.0"
+  spec.add_runtime_dependency "activesupport", ">= 7.0"
 end

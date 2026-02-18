@@ -109,9 +109,10 @@ The editor JS auto-detects `window.Prism` and passes it to `createEditor()` when
 
 ## Requirements
 
-- Rails >= 6.0
-- ActiveAdmin
-- Formtastic
+- Ruby >= 3.0
+- Rails >= 7.0
+- ActiveAdmin >= 4.0
+- Formtastic >= 5.0
 
 ## Development
 
