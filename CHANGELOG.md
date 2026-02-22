@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.10](https://github.com/codxse/mitosis-active-admin/compare/v0.1.9...v0.1.10) (2026-02-22)
+
 ### [0.1.9](https://github.com/codxse/mitosis-active-admin/compare/v0.1.5...v0.1.9) (2026-02-18)
 
 
