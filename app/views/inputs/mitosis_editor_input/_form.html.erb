@@ -24,6 +24,9 @@
   if (window.MitosisEditor && window.MitosisEditor.createEditor) {
     var editor = window.MitosisEditor.createEditor(options);
 
+    container.editor = editor;
+    container.dispatchEvent(new CustomEvent('mitosis-editor:ready', { detail: editor }));
+
     if (options.theme === 'auto') {
       var htmlEl = document.documentElement;
       var mutationObserver = new MutationObserver(function(mutations) {
