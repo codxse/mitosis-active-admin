@@ -107,6 +107,44 @@ This creates `app/views/inputs/mitosis_editor_input/_dependencies.html.erb` with
 
 The editor JS auto-detects `window.Prism` and passes it to `createEditor()` when present.
 
+### JavaScript API
+
+The editor instance is accessible via the container element and a custom event.
+
+**Container ID** follows the pattern `mitosis-editor-{object_name}_{method}`:
+
+```js
+// For f.input :body, as: :mitosis_editor on a Post form:
+const container = document.getElementById("mitosis-editor-post_body")
+```
+
+**`mitosis-editor:ready` event** — dispatched on the container when the editor finishes initializing. The editor instance is passed as `event.detail`. The event does not bubble.
+
+```js
+const container = document.getElementById("mitosis-editor-post_body")
+
+if (container.editor) {
+  // editor already initialized
+  doSomething(container.editor)
+} else {
+  container.addEventListener("mitosis-editor:ready", e => doSomething(e.detail), { once: true })
+}
+```
+
+**Editor methods:**
+
+| Method | Description |
+|--------|-------------|
+| `getMarkdown()` | Returns current content as a Markdown string |
+| `setMarkdown(content)` | Replaces editor content |
+| `getHTML()` | Returns rendered HTML string |
+| `getBoth()` | Returns `{ markdown, html }` |
+| `setTheme(theme)` | Sets theme: `'light'`, `'dark'`, or `'auto'` |
+| `getTheme()` | Returns current theme string |
+| `destroy()` | Tears down the editor and removes its DOM |
+
+**Adding custom scripts alongside the editor** — the `_dependencies.html.erb` partial (see [Customizing Dependencies](#customizing-dependencies)) is the right place to load additional scripts that interact with the editor, since it renders on every page that includes a mitosis editor input.
+
 ## Requirements
 
 - Ruby >= 3.0
